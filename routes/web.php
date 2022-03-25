@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BasketController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [CatalogController::class, 'index'])->name('home');
-Route::post('/account/add/{id}', [BasketController::class, 'add'])->name('account.add');
-//Route::get('/basket', 'App\Http\Controllers\BasketController@index')->name('basket.index');
+Route::post('/books/add/{id}', [BookController::class, 'add'])->name('account.add');
+//Route::get('/basket', 'App\Http\Controllers\BookController@index')->name('basket.index');
 
 Route::get('/account', [HomeController::class, 'index'])->name('account');
 Auth::routes();

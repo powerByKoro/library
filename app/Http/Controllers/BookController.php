@@ -2,33 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Basket;
+use App\Models\Reservation;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class BasketController extends Controller
+class BookController extends Controller
 {
     public function index(Request $request)
     {
         $basket_id = $request->cookie('basket_id');
         if (!empty($basket_id)) {
-            $products = Basket::findOrFail($basket_id)->products;
+            $products = Reservation::findOrFail($basket_id)->products;
             return view('account', compact('products'));
         } else {
             abort(404);
         }
     }
 
-    public function add(Request $request, $id)
+    public function add(Request $request, $id): RedirectResponse
     {
-        $basket_id = $request->cookie('basket_id');
+        $currentUser = $request->user();
+
         if (empty($basket_id)) {
             // если корзина еще не существует — создаем объект
-            $basket = Basket::create();
+            $basket = Reservation::create();
             // получаем идентификатор, чтобы записать в cookie
             $basket_id = $basket->id;
         } else {
             // корзина уже существует, получаем объект корзины
-            $basket = Basket::findOrFail($basket_id);
+            $basket = Reservation::findOrFail($basket_id);
             // обновляем поле `updated_at` таблицы `baskets`
             $basket->touch();
         }
