@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function index(): View
     {
         $reservationBooks = ReservationBook::query()
-            ->select('books.*')
+            ->select('books.*', 'reservation_books.id as reservation_books_id')
             ->join('reservations', 'reservations.id', '=', 'reservation_books.reservation_id')
             ->join('books', 'books.id', '=', 'reservation_books.book_id')
             ->where('reservations.user_id', Auth::id())
