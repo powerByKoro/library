@@ -2,27 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\ReservationBook;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function index(): View
     {
-        return view('account');
+        $reservationBooks = ReservationBook::query()
+            ->select('books.*')
+            ->join('reservations', 'reservations.id', '=', 'reservation_books.reservation_id')
+            ->join('books', 'books.id', '=', 'reservation_books.book_id')
+            ->where('reservations.user_id', Auth::id())
+            ->get();
+
+        return view('account', compact('reservationBooks'));
     }
 }
