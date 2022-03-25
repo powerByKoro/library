@@ -3,14 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\ReservationBook;
 use Illuminate\Contracts\View\View;
 
 class CatalogController extends Controller
 {
     public function index(): View
     {
-        $products = Book::all();
+        $reservationBooks = ReservationBook::all();
 
-        return view('home', compact('products'));
+        $excludedBookIds = [];
+
+        foreach ($reservationBooks as $reservationBook) {
+            if (!in_array($reservationBook->book_id, $excludedBookIds)) {
+                $excludedBookIds[] = $reservationBook->book_id;
+            }
+        }
+
+        $books = Book::query()
+            ->whereNotIn('id', $excludedBookIds)
+            ->get();
+
+        return view('home', compact('books'));
     }
 }

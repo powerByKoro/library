@@ -13,9 +13,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Reservation extends Model
 {
+    protected $table = 'reservations';
+
     public function books(): BelongsToMany
     {
-        return $this->belongsToMany(Book::class);
+        return $this->belongsToMany(Book::class, 'reservation_books');
     }
 
     public function user(): BelongsTo
