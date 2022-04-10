@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,17 +19,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [CatalogController::class, 'index'])->name('home');
+Route::post('/author/{id}', [ImageController::class, 'authors'])->name('author');
+Route::post('/category/{id}', [ImageController::class, 'categories'])->name('categories');
+Route::post('/book_description/{id}', [ImageController::class, 'bookDescription'])->name('bookDescription');
+
+Route::post('/image/upload', [ImageController::class, 'upload_img'])->name('upload_img');
+Route::get('/search', [CatalogController::class, 'search'])->name('search');
 Route::post('/books/add/{id}', [BookController::class, 'add'])->name('account.add');
-//Route::get('/basket', 'App\Http\Controllers\BookController@index')->name('basket.index');
+Route::post('/books/delete/{id}', [BookController::class, 'delete'])->name('account.delete');
+
 
 Route::get('/account', [HomeController::class, 'index'])->name('account');
+
+
 Auth::routes();
-//Route::get('/', 'App\Http\Controllers\RouteController@home')->name('home');
 
 
 
-//Route::get('/catalog/index', 'CatalogController@index')->name('catalog.index');
-//Route::get('category/{slug}', 'App\Http\Controllers\CatalogController@category')->name('catalog.category');
-//Route::get('author/{slug}', 'App\Http\Controllers\CatalogController@brand')->name('catalog.brand');
-//Route::get('product/{slug}', 'App\Http\Controllers\CatalogController@product')->name('product');
 

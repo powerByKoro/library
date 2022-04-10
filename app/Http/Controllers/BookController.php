@@ -3,25 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Models\ReservationBook;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class BookController extends Controller
 {
-    public function index(Request $request)
+    public function __construct()
     {
-        $basket_id = $request->cookie('basket_id');
-        if (!empty($basket_id)) {
-            $products = Reservation::findOrFail($basket_id)->products;
-            return view('account', compact('products'));
-        } else {
-            abort(404);
-        }
+        $this->middleware('auth');
     }
+
 
     public function add(Request $request, $id): RedirectResponse
     {
+
         /* @var $currentUser User */
         $currentUser = $request->user();
 
@@ -29,10 +28,31 @@ class BookController extends Controller
         $reservation->user_id = $currentUser->id;
         $reservation->save();
 
-        $reservation->books()->attach($id);
+        DB::table('reservation_books')
+            ->insert([
+                'reservation_id' => $reservation->id,
+                'book_id' => $id
+            ]);
 
-        return back()->with([
-            'message' => 'Книга успешно добавлена!'
-        ]);
+        DB::table('books')
+            ->where('id',$id)
+            ->update(['status'=>true]);
+
+        return Redirect::route('home');
+    }
+
+    public function delete($id): RedirectResponse
+    {
+        /* @var $currentUser User */
+
+        DB::table('reservation_books')
+            ->where('book_id', '=', $id)
+            ->delete();
+
+        DB::table('books')
+            ->where('id',$id)
+            ->update(['status'=>false]);
+
+        return Redirect::route('account');
     }
 }

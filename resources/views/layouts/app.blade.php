@@ -36,6 +36,21 @@
                         <a href="{{route('account')}}" class="">Войти в личный кабинет</a>
                     </ul>
 
+                    <ul class="navbar-nav me-auto">
+                        <div class="row align-items-center">
+                            <form method="GET" action="/search">
+                                <div class="input-group">
+                                    <div class="form-outline">
+                                        <input type="text" id="search" class="form-control" name="search" placeholder="Поиск..."/>
+                                    </div>
+                                    <button id="search-button" type="submit" class="btn btn-info btn-md " style="margin-left: 10px;color: white" >
+                                        поиск книг
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </ul>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -74,10 +89,11 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
+        <main class="py-4 content">
             @yield('content')
+
         </main>
     </div>
+
 </body>
 </html>
