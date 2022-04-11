@@ -43,7 +43,7 @@ class BookController extends Controller
 
     public function delete($id): RedirectResponse
     {
-        /* @var $currentUser User */
+
 
         DB::table('reservation_books')
             ->where('book_id', '=', $id)

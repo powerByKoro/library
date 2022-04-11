@@ -2,10 +2,13 @@
 
 
 <div class="card-group">
+    @php
+
+    @endphp
     @if(count($books))
         @foreach ($books as $book)
             <div class="card" style="max-width: 250px; min-width: 250px; margin: 10px; border-radius: 15px; background-color: #f5f5f5">
-                <img src="{{asset($book->image)}}" class="card-img-top" style="width: 230px; height: 200px; margin: 10px;border-radius: 10px">
+                <img src="{{asset('images/'.$book->image . '.jpg')}}" class="card-img-top" style="width: 230px; height: 200px; margin: 10px;border-radius: 10px">
                 <div class="card-body">
                     <h5 class="card-title text-truncate">{{$book->name}}</h5>
                     <p class="card-text text-truncate">{{$book->content}}</p>

@@ -42,7 +42,7 @@
     <div class="card-group "  style="margin-top: 20px">
         @foreach ($reservationBooks as $reservationBook)
             <div class="card" style="max-width: 250px">
-                <img src="{{asset($reservationBook->image)}}" class="card-img-top" style="width: 100%; height: 200px;">
+                <img src="{{asset('images/'.$reservationBook->image . '.jpg')}}" class="card-img-top" style="width: 100%; height: 200px;">
                 <div class="card-body">
                     <h5 class="card-title text-truncate">{{$reservationBook->name}}</h5>
                     <p class="card-text text-truncate">{{$reservationBook->content}}</p>

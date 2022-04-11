@@ -19,6 +19,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [CatalogController::class, 'index'])->name('home');
+Route::get('/author_page', function(){
+    return view('author_page');
+})->name('author_page');
+Route::get('/category_page', function(){
+    return view('category_page');
+});
 Route::post('/author/{id}', [ImageController::class, 'authors'])->name('author');
 Route::post('/category/{id}', [ImageController::class, 'categories'])->name('categories');
 Route::post('/book_description/{id}', [ImageController::class, 'bookDescription'])->name('bookDescription');
