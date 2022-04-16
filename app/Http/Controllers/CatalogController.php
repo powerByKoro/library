@@ -27,6 +27,8 @@ class CatalogController extends Controller
         $books = Book::query()
             ->whereNotIn('id', $excludedBookIds)
             ->get();
+        $books=$books->chunk(10);
+
 
         $authors = Author::query()
             ->get();

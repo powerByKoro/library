@@ -32,6 +32,22 @@
              </div>
             <div class="row" style="margin-top: 30px">
                 <h1>Книги</h1>
+                @php
+                    $second_books=$books[1];
+                    $third_books=$books[2];
+                    $books = $books[0];
+                @endphp
+                @include('catalog_element')
+            </div>
+            <div class="row" style="margin-top: 30px">
+                <h1>Авторы</h1>
+                @include('authors')
+            </div>
+            <div class="row" style="margin-top: 30px">
+                <h1>Книги</h1>
+                @php
+                    $books = $second_books;
+                @endphp
                 @include('catalog_element')
             </div>
     </div>
