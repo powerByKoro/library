@@ -4,16 +4,16 @@
 
 <div class="container-fluid">
     <ul class="nav  justify-content-evenly" style="border-bottom: 3px solid black">
-        <li class="nav-item">
-            <a class="nav-link text-black h1 "  aria-current="page" href="/author_page">
+        <li class="nav-item " style="">
+            <a class="nav-link  h1  "  aria-current="page" href="/author_page">
                 Авторы
             </a>
             <figcaption class="blockquote-footer">
                 Поиск литературы по Авторам
             </figcaption>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-black h1" href="/category_page">Категории книг</a>
+        <li class="nav-item ">
+            <a class="nav-link  h1 " href="/category_page">Категории книг</a>
             <figcaption class="blockquote-footer">
                 Поиск литературы по Категориям
             </figcaption>
