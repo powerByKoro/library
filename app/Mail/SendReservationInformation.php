@@ -4,11 +4,10 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendPasswordAfterRegistration extends Mailable
+class SendReservationInformation extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -17,11 +16,11 @@ class SendPasswordAfterRegistration extends Mailable
      *
      * @return void
      */
-    public $password ;
-    public function __construct($password)
+    public $book;
 
+    public function __construct($currentBook)
     {
-        $this->password = $password;
+        $this->book = $currentBook;
     }
 
     /**
@@ -31,6 +30,6 @@ class SendPasswordAfterRegistration extends Mailable
      */
     public function build()
     {
-        return $this->view('send_email');
+        return $this->view('reservation_information_email');
     }
 }
