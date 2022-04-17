@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class ImageController extends Controller
 {
-    public function upload_img(Request $request){
+    public function upload_img(Request $request, $id){
         $path = $request->file('image')->store('uploads','public');
         DB::table('users')
-                ->update(['img' => $path]);
+            ->where('id','=',$id)
+            ->update(['img' => $path]);
         return back();
     }
 

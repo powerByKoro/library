@@ -8,9 +8,8 @@
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-            <a href="{{route('account')}}" class="nav-link text-white active">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+        <li class="nav-item ">
+            <a href="/account" class="nav-link text-white active ">
                 Личный Кабинет
             </a>
         </li>
@@ -18,7 +17,7 @@
     </ul>
     <hr>
     <div class="dropdown">
-        <a href="{{route('account')}}" class="d-flex align-items-center text-white text-decoration-none " id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <a href="/account" class="d-flex align-items-center text-white text-decoration-none " id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="
                 @if(Auth::user())
                     {{asset('/storage/'. Auth::user()->img)}}
@@ -26,19 +25,18 @@
                          {{asset('/images/default.jpg')}}
                 @endif
                 " alt="" width="32" height="32" class="rounded-circle me-2">
-            <strong>
+                <strong>
                     @if(Auth::user())
                         {{ Auth::user()->name }}
                     @else
-                    Абракадабра
+                        Абракадабра
                     @endif
-            </strong>
+                </strong>
         </a>
 
-        <ul class=""><a href="" class="text-decoration-none" >Авторы</a></ul>
-        <ul class=""><a href="" class="text-decoration-none">Книги</a></ul>
-        <ul class=""><a href="" class="text-decoration-none">Жанры литературы</a></ul>
-        <ul class=""><a href="" class="text-decoration-none">Юридическая информаци</a></ul>
+        <ul class="" style="margin-top: 10px"><a href="/author_page" class="text-decoration-none" >Авторы</a></ul>
+        <ul class=""><a href="/" class="text-decoration-none">Книги</a></ul>
+        <ul class=""><a href="/category_page" class="text-decoration-none">Жанры литературы</a></ul>
 
     </div>
 </div>

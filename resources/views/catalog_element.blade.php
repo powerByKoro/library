@@ -1,16 +1,19 @@
 
-<div class="card-group">
-    @php
 
-    @endphp
-    @if(count($books))
-        @foreach ($books as $book)
-            @include('book')
-        @endforeach
 
-    @else
-    <p class="text-danger">Книги не найдены</p>
-    @endif
+@if(count($books))
+    <div class="card-group">
+    @foreach ($books as $book)
+        @include('book')
+    @endforeach
+    </div>
+@else
+<div class="row">
+    <div class="col-6 ">
+        <h2 class="text-danger" >Книги не найдены !</h2>
+    </div>
 </div>
+@endif
+
 
 

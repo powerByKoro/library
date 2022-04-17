@@ -29,7 +29,7 @@ Route::post('/author/{id}', [ImageController::class, 'authors'])->name('author')
 Route::post('/category/{id}', [ImageController::class, 'categories'])->name('categories');
 Route::post('/book_description/{id}', [ImageController::class, 'bookDescription'])->name('bookDescription');
 
-Route::post('/image/upload', [ImageController::class, 'upload_img'])->name('upload_img');
+Route::post('/image/upload/{id}', [ImageController::class, 'upload_img'])->name('upload_img');
 Route::get('/search', [CatalogController::class, 'search'])->name('search');
 Route::post('/books/add/{id}', [BookController::class, 'add'])->name('account.add');
 Route::post('/books/delete/{id}', [BookController::class, 'delete'])->name('account.delete');
