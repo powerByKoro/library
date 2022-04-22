@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 
 class ImageController extends Controller
@@ -20,7 +21,7 @@ class ImageController extends Controller
     }
 
     public function authors($id){
-        $authors = Author::query()
+        $author_books = Author::query()
             ->where('id','=',$id)
             ->with('books')
             ->get();
@@ -28,9 +29,14 @@ class ImageController extends Controller
         $name = DB::table('authors')
             ->where('id','=',$id)
             ->first();
-        return view('author_page',compact('authors','name'));
-    }
+        return view('author_books', compact('author_books','name'));
 
+    }
+    public function authors_page(){
+        $authors = DB::table('authors')
+            ->get();
+        return view('authors_page', compact('authors'));
+    }
     public function categories($id){
         $categories = Category::query()
             ->where('id','=',$id)

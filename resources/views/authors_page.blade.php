@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-Страница авторов
+@include('authors')
 
 @endsection

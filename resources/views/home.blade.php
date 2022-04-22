@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <ul class="nav  justify-content-evenly" style="border-bottom: 3px solid black">
         <li class="nav-item " style="">
-            <a class="nav-link  h1  "  aria-current="page" href="/author_page">
+            <a class="nav-link  h1  "  aria-current="page" href="/authors_page">
                 Авторы
             </a>
             <figcaption class="blockquote-footer">
@@ -41,6 +41,9 @@
             </div>
             <div class="row" style="margin-top: 30px">
                 <h1>Авторы</h1>
+                @php
+                    $authors = $authors[0];
+                @endphp
                 @include('authors')
             </div>
             <div class="row" style="margin-top: 30px">

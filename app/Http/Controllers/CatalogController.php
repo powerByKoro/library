@@ -30,8 +30,9 @@ class CatalogController extends Controller
         $books=$books->chunk(10);
 
 
-        $authors = Author::query()
+        $author = Author::query()
             ->get();
+        $authors = $author->chunk(5);
 
         $categories = Category::query()
             ->get();

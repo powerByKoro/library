@@ -1,21 +1,38 @@
 
 
-<div class="card-group">
-
+<div class="container">
 @foreach ($authors as $author)
-        <div class="card" style="max-width: 250px; min-width: 250px; margin: 10px; border-radius: 15px; background-color: #f5f5f5">
-            <img src="{{asset($author->image)}}" class="card-img-top" style="width: 230px; height: 200px; margin: 10px;border-radius: 10px">
+    <div class="row">
+        <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-truncate">{{$author->name}}</h5>
-                <p class="card-text text-truncate">{{$author->content}}</p>
-                <div class="d-flex justify-content-center">
-                    <form action="/books/add/{{$author->id}}" method="post" class="form-inline ">
-                        @csrf
-                        <button type="submit" class="btn btn-success">Просмотреть книги Авторов</button>
-                    </form>
+                <div class="row">
+                    <div class="col-4">
+                        <h2 class="">{{$author->name}}</h2>
+                        <form action="/author/{{$author->id}}" method="post">
+                            @csrf
+                            <button class="btn btn-dark btn-md mt-2">
+                                Просмотреть книги автора
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-3">
+                        <img src="{{asset('images/'.$author->image . '.jpg')}}" class="card-img-top" style="width: 250px; height: 250px; margin: 10px;border-radius: 10px">
+                    </div>
+                    <div class="col-3">
+                      <p class="" style="
+                        overflow: hidden;
+                          display: -webkit-box;
+                          -webkit-line-clamp: 9;
+                          -webkit-box-orient: vertical;
+                          line-height: 1.3em;
+                          height: 11.9em;
+                        ">
+                          {{$author->content}}
+                      </p>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 @endforeach
-
 </div>
