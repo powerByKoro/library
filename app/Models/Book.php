@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Book extends Model
 {
+    protected $dates = ['date_return'];
+
     public function reservations(): BelongsToMany
     {
         return $this->belongsToMany(Reservation::class);

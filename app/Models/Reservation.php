@@ -15,6 +15,7 @@ class Reservation extends Model
 {
     protected $table = 'reservations';
 
+
     public function books(): BelongsToMany
     {
         return $this->belongsToMany(Book::class, 'reservation_books');

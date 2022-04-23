@@ -32,7 +32,7 @@
                             Дата регистрации
                         </div>
                         <div class="col-5 offset-1">
-                            {{Auth::user()->created_at}}
+                            {{Auth::user()->created_at->format('d/m/Y')}}
                         </div>
                     </div>
                 </li>
@@ -41,12 +41,9 @@
         </div>
     </div>
 </div>
-
-
-
 <div class="container-fluid">
     <div class="col-3 offset-5">
-        <h2>Мои книги</h2>
+        <h2> Зарезервированные книги</h2>
     </div>
     <div class="row d-flex-nowrap">
         <div class="col-10 offset-2">
@@ -56,19 +53,25 @@
                         <img src="{{asset('images/'.$reservationBook->image . '.jpg')}}" class="card-img-top" style="width: 230px; height: 200px; margin: 10px;border-radius: 10px">
                         <div class="card-body">
                             <h5 class="card-title text-truncate">{{$reservationBook->name}}</h5>
-                            <p class="card-text text-truncate">{{$reservationBook->content}}</p>
+                            <div class="">
+                                <h3 class="text">
+                                    @if($reservationBook->date_return === null)
+                                        ошибка
+                                    @else
+                                        @php
+                                         $now = Carbon\Carbon::parse($reservationBook->date_return);
+                                         $now->add(new \DateInterval('PT3H0M0S'));
+                                        @endphp
+                                        Резер до <br>
+                                        {{$now->format('Дата: d/m/Y  Время: H:i')}}
+                                    @endif
+                                </h3>
+                            </div>
+
                             <div class="d-flex justify-content-center">
                                 <form action="/books/delete/{{$reservationBook->id}}" method="post" class="form-inline ">
                                     @csrf
-                                    <button type="submit" class="btn btn-danger">Удалить из личного кабинета</button>
-                                </form>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <form action="/book_description/{{$reservationBook->id}}" method="post" class="form-inline ">
-                                    @csrf
-                                    <button type="submit" class="btn btn-secondary" style="margin-top: 10px">
-                                        Описание книги
-                                    </button>
+                                    <button type="submit" class="btn btn-danger">Удалить из резерва</button>
                                 </form>
                             </div>
                         </div>
