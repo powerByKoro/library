@@ -5,7 +5,7 @@
     <h2>Личный кабинет</h2>
     <div class="row">
         <div class="col-3">
-            <img src="{{asset('/storage/'. Auth::user()->img)}}" alt="" class="img-fluid" style="height: 300px;width: 300px;border-radius: 15px">
+            <img src="{{asset('/storage/'. Auth::user()->img)}}" alt="" class="img-fluid" style="height: 350px;width: 290px;border-radius: 15px">
             <form action="/image/upload/{{Auth::user()->id}}"  method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-control" style="border: none">
@@ -50,7 +50,7 @@
             <div class="card-group "  style="margin-top: 20px">
                 @foreach ($reservationBooks as $reservationBook)
                     <div class="card" style="max-width: 250px; min-width: 250px; margin: 10px; border-radius: 15px; background-color: #f5f5f5">
-                        <img src="{{asset('images/'.$reservationBook->image . '.jpg')}}" class="card-img-top" style="width: 230px; height: 200px; margin: 10px;border-radius: 10px">
+                        <img src="{{asset('images/'.$reservationBook->image . '.jpg')}}" class="card-img-top" style="width: 230px; height: 280px; margin: 10px;border-radius: 10px">
                         <div class="card-body">
                             <h5 class="card-title text-truncate">{{$reservationBook->name}}</h5>
                             <div class="">
@@ -58,12 +58,8 @@
                                     @if($reservationBook->date_return === null)
                                         ошибка
                                     @else
-                                        @php
-                                         $now = Carbon\Carbon::parse($reservationBook->date_return);
-                                         $now->add(new \DateInterval('PT3H0M0S'));
-                                        @endphp
-                                        Резер до <br>
-                                        {{$now->format('Дата: d/m/Y  Время: H:i')}}
+                                        Резерв до <br>
+                                        {{Carbon\Carbon::parse($reservationBook->date_return)->format('Дата: d/m/Y  Время: H:i')}}
                                     @endif
                                 </h3>
                             </div>

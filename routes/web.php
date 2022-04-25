@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [CatalogController::class, 'index'])->name('home');
+Route::get('/', [CatalogController::class, 'home_page'])->name('home');
+
 Route::get('/authors_page', [ImageController::class, 'authors_page'])->name('authors_page');
-Route::get('/category_page', function(){
-    return view('category_page');
-});
+Route::get('/categories_page', [ImageController::class, 'categories_page'])->name('categories_page');
+
 Route::post('/author/{id}', [ImageController::class, 'authors'])->name('author');
 Route::post('/category/{id}', [ImageController::class, 'categories'])->name('categories');
 Route::post('/book_description/{id}', [ImageController::class, 'bookDescription'])->name('bookDescription');
@@ -38,6 +38,9 @@ Route::get('/account', [HomeController::class, 'index'])->name('account');
 Route::get('/author_books', function (){
     return view('author_books');
 })->name('author_books');
+Route::get('/category_books', function (){
+    return view('category_books');
+})->name('category_books');
 
 Auth::routes();
 

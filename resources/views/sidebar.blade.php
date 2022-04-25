@@ -36,7 +36,7 @@
 
         <ul class="" style="margin-top: 10px"><a href="/author_page" class="text-decoration-none" >Авторы</a></ul>
         <ul class=""><a href="/" class="text-decoration-none">Книги</a></ul>
-        <ul class=""><a href="/category_page" class="text-decoration-none">Жанры литературы</a></ul>
+        <ul class=""><a href="/category_page" class="text-decoration-none">Категории</a></ul>
 
     </div>
 </div>

@@ -35,7 +35,6 @@ class BookController extends Controller
 
         $date_return = date_add($reservation->created_at,date_interval_create_from_date_string('2 days'));
 
-
         DB::table('reservation_books')
             ->insert([
                 'reservation_id' => $reservation->id,

@@ -12,23 +12,14 @@ use Illuminate\Support\Facades\DB;
 
 class CatalogController extends Controller
 {
-    public function index(): View
+    public function home_page(): View
     {
-        $reservationBooks = ReservationBook::all();
 
-        $excludedBookIds = [];
+       $books = Book::query()
+           ->where('status', '=' , false)
+           ->get();
 
-        foreach ($reservationBooks as $reservationBook) {
-            if (!in_array($reservationBook->book_id, $excludedBookIds)) {
-                $excludedBookIds[] = $reservationBook->book_id;
-            }
-        }
-
-        $books = Book::query()
-            ->whereNotIn('id', $excludedBookIds)
-            ->get();
-        $books=$books->chunk(10);
-
+        $books = $books->chunk(10);
 
         $author = Author::query()
             ->get();
@@ -36,7 +27,8 @@ class CatalogController extends Controller
 
         $categories = Category::query()
             ->get();
-        return view('home', compact('books','authors','categories'));
+
+        return view('home', ['books'=>$books,'authors'=>$authors,'categories'=>$categories]);
     }
 
 

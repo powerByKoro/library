@@ -37,8 +37,13 @@ class ImageController extends Controller
             ->get();
         return view('authors_page', compact('authors'));
     }
+    public function categories_page(){
+        $categories = DB::table('categories')
+            ->get();
+        return view('categories_page', compact('categories'));
+    }
     public function categories($id){
-        $categories = Category::query()
+        $category_books = Category::query()
             ->where('id','=',$id)
             ->with('books')
             ->get();
@@ -47,7 +52,7 @@ class ImageController extends Controller
             ->where('id','=',$id)
             ->first();
 
-        return view('category_page',compact('categories','name'));
+        return view('category_books',compact('category_books','name'));
 
     }
 
@@ -55,6 +60,18 @@ class ImageController extends Controller
         $descriptionId = DB::table('books')
             ->where('id','=', $id)
             ->get();
-        return view('book_description',compact('descriptionId'));
+
+        $descriptionId_2 = DB::table('books')
+            ->where('id','=', $id)
+            ->first();
+
+        $authorId = $descriptionId_2->author_id;
+
+        $authorName = DB::table('authors')
+            ->where('id','=',$authorId)
+            ->first();
+
+
+        return view('book_description',compact('descriptionId','authorName'));
     }
 }

@@ -8,16 +8,16 @@
             </div>
             <div class="col-5 offset-2">
                 <h1 class="text">{{$id->name}}</h1>
-                <h2 class="text">Автор:</h2>
+                <h2 class="text">Автор: {{$authorName->name}}</h2>
                 @if($id->status == false)
                     <form action="/books/add/{{$id->id}}" method="post" class="form-inline">
                         @csrf
-                        <button type="submit" class="btn btn-lg  btn-outline-secondary">Добавить в личный кабинет</button>
+                        <button type="submit" class="btn btn-lg  btn-outline-secondary" style="width: 400px">Добавить в резерв</button>
                     </form>
                 @else
                     <form action="/books/delete/{{$id->id}}" method="post" class="form-inline">
                         @csrf
-                        <button type="submit" class="btn btn-danger">Удалить из личного кабинета </button>
+                        <button type="submit" class="btn btn-danger">Удалить из резерва </button>
                     </form>
                 @endif
             </div>

@@ -13,10 +13,23 @@
             </figcaption>
         </li>
         <li class="nav-item ">
-            <a class="nav-link  h1 " href="/category_page">Категории книг</a>
-            <figcaption class="blockquote-footer">
-                Поиск литературы по Категориям
-            </figcaption>
+            <div class="row align-items-center">
+                <form method="GET" action="/search">
+                    <div class="input-group">
+                        <div class="form-outline" style="margin-top: 7px">
+                            <input type="text" id="search" class="form-control" style="height: 50px;width: 300px " name="search" placeholder="Поиск..."/>
+                        </div>
+                        <button id="search-button" type="submit" class="btn btn-info  " style="color: white; margin-top: 7px; width: 60px"  >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+                <figcaption class="blockquote-footer">
+                    Поиск литературы
+                </figcaption>
+            </div>
         </li>
     </ul>
     <div class="row d-flex-nowrap">
@@ -33,9 +46,9 @@
             <div class="row" style="margin-top: 30px">
                 <h1>Книги</h1>
                 @php
-                    $second_books=$books[1];
-                    $third_books=$books[2];
-                    $books = $books[0];
+                    $thirst_book = $books[0];
+                    $second_book = $books[1];
+                    $books = $thirst_book;
                 @endphp
                 @include('catalog_element')
             </div>
@@ -49,7 +62,7 @@
             <div class="row" style="margin-top: 30px">
                 <h1>Книги</h1>
                 @php
-                    $books = $second_books;
+                    $books = $second_book;
                 @endphp
                 @include('catalog_element')
             </div>
