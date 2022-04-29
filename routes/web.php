@@ -41,6 +41,9 @@ Route::get('/author_books', function (){
 Route::get('/category_books', function (){
     return view('category_books');
 })->name('category_books');
+Route::get('/information', function (){
+    return view('information');
+})->name('information');
 
 Auth::routes();
 

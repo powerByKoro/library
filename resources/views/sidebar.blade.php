@@ -33,10 +33,8 @@
                     @endif
                 </strong>
         </a>
-
-        <ul class="" style="margin-top: 10px"><a href="/author_page" class="text-decoration-none" >Авторы</a></ul>
+        <ul class="" style="margin-top: 10px"><a href="/authors_page" class="text-decoration-none" >Авторы</a></ul>
         <ul class=""><a href="/" class="text-decoration-none">Книги</a></ul>
-        <ul class=""><a href="/category_page" class="text-decoration-none">Категории</a></ul>
-
+        <ul class=""><a href="/information" class="text-decoration-none">Контактная информация</a></ul>
     </div>
 </div>

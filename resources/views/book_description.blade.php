@@ -8,7 +8,14 @@
             </div>
             <div class="col-5 offset-2">
                 <h1 class="text">{{$id->name}}</h1>
-                <h2 class="text">Автор: {{$authorName->name}}</h2>
+                <h2 class="text">Автор:
+                @if($authorName)
+                        {{$authorName->name}}
+                @else
+                    Автор не указан
+                @endif
+
+                </h2>
                 @if($id->status == false)
                     <form action="/books/add/{{$id->id}}" method="post" class="form-inline">
                         @csrf
