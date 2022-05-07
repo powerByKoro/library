@@ -36,6 +36,16 @@
                         </div>
                     </div>
                 </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-3">
+                            Номер читательского билета
+                        </div>
+                        <div class="col-5 offset-1">
+                            MAI-2022-{{Auth::user()->bilet}}
+                        </div>
+                    </div>
+                </li>
 
             </ul>
         </div>

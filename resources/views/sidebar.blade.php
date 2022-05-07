@@ -1,40 +1,61 @@
 
 
+<div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
 
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; border-radius: 20px; margin-top: 90px">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href="/"></use></svg>
-        <span class="fs-4"><h3>Библиотека Маевец</h3></span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item ">
-            <a href="/account" class="nav-link text-white active ">
-                Личный Кабинет
+        <img src="{{asset('storage/uploads/plane.svg')}}" alt="" class="" style="height: 40px; margin: 10px">
+
+
+    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+        <li class="nav-item">
+            <a href="/" class="nav-link active py-3 border-bottom" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                <img src="{{asset('storage/uploads/home.svg')}}" alt="" class="" style="height: 40px">
             </a>
         </li>
-
+        <li>
+            <a href="/authors_page" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+                <img src="{{asset('storage/uploads/book.svg')}}" alt="" class="" style="height: 40px">
+            </a>
+        </li>
+        <li>
+            <a href="/information" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
+                <img src="{{asset('storage/uploads/contacts.svg')}}" alt="" class="" style="height: 40px">
+            </a>
+        </li>
     </ul>
-    <hr>
-    <div class="dropdown">
-        <a href="/account" class="d-flex align-items-center text-white text-decoration-none " id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="dropdown border-top">
+        <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="
                 @if(Auth::user())
-                    {{asset('/storage/'. Auth::user()->img)}}
-                @else
-                         {{asset('/images/default.jpg')}}
-                @endif
-                " alt="" width="32" height="32" class="rounded-circle me-2">
-                <strong>
-                    @if(Auth::user())
-                        {{ Auth::user()->name }}
-                    @else
-                        Абракадабра
-                    @endif
-                </strong>
+                            {{asset('storage/'. Auth::user()->img)}}
+                            @else
+                            {{asset('storage/uploads/default.svg')}}
+                            @endif
+                " alt="mdo" width="70" height="60" class="rounded">
         </a>
-        <ul class="" style="margin-top: 10px"><a href="/authors_page" class="text-decoration-none" >Авторы</a></ul>
-        <ul class=""><a href="/" class="text-decoration-none">Книги</a></ul>
-        <ul class=""><a href="/information" class="text-decoration-none">Контактная информация</a></ul>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+
+            <li><a class="dropdown-item" href="/account">Личный кабинет</a></li>
+            <li><a class="dropdown-item" href="/information">Контактная информация</a></li>
+            <li><hr class="dropdown-divider"></li>
+           @guest()
+                @if (Route::has('login'))
+                    <li class="nav-item">
+                        <a class="dropdown-item" href="{{ route('login') }}">{{ __('Вход') }}</a>
+                    </li>
+                @endif
+
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="dropdown-item" href="{{ route('register') }}">{{ __('Регистрация') }}</a>
+                    </li>
+                @endif
+            @else
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    {{ __('Выход') }}
+                </a>
+            @endguest
+        </ul>
     </div>
 </div>

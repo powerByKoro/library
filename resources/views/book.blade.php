@@ -23,10 +23,19 @@
             {{$book->content}}
         </em>
         <div class="d-flex justify-content-center">
-            <form action="/books/add/{{$book->id}}" method="post" class="form-inline ">
-                @csrf
-                <button type="submit" class="btn btn-success">Добавить в резерв</button>
-            </form>
+            Осталось в библиотеке : {{$book->count}}
+        </div>
+        <div class="d-flex justify-content-center">
+            @if(in_array($book->id, $book_id_array))
+                <p class="text-danger">У Вас уже есть эта книга!</p>
+            @elseif($book->count >0 )
+                <form action="/books/add/{{$book->id}}" method="post" class="form-inline ">
+                    @csrf
+                    <button type="submit" class="btn btn-success">Добавить в резерв</button>
+                </form>
+            @else
+                <p class="text-danger">Нет в наличии</p>
+            @endif
         </div>
         <div class="d-flex justify-content-center">
             <form action="/book_description/{{$book->id}}" method="post" class="form-inline ">

@@ -16,7 +16,7 @@
                 @endif
 
                 </h2>
-                @if($id->status == false)
+                @if(!in_array($id->id, $book_id_array))
                     <form action="/books/add/{{$id->id}}" method="post" class="form-inline">
                         @csrf
                         <button type="submit" class="btn btn-lg  btn-outline-secondary" style="width: 400px">Добавить в резерв</button>

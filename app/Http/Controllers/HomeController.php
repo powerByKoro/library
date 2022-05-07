@@ -33,7 +33,7 @@ class HomeController extends Controller
         DB::table('books')
             ->where('books.date_return','<',$cur_date)
             ->update([
-                'status'=>false,
+                'count'=>DB::raw('count+1'),
                 'created_at'=>null,
                 'date_return'=>null
             ]);

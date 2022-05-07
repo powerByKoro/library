@@ -11,6 +11,7 @@ use DateTimeZone;
 use Faker\Provider\DateTime;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
@@ -28,7 +29,6 @@ class BookController extends Controller
 
         /* @var $currentUser User */
         $currentUser = $request->user();
-
         $reservation = new Reservation;
         $reservation->user_id = $currentUser->id;
         $reservation->save();
@@ -41,10 +41,14 @@ class BookController extends Controller
                 'book_id' => $id
             ]);
 
+        $counter = DB::table('books')->where('id', $id)->first();
+        $counter = $counter->count;
+        $counter -=1;
+
         DB::table('books')
             ->where('id',$id)
             ->update([
-                'status'=>true,
+                'count' => $counter,
                 'created_at'=>$reservation->created_at,
                 'date_return'=>$date_return
             ]);
@@ -64,10 +68,14 @@ class BookController extends Controller
             ->where('book_id', '=', $id)
             ->delete();
 
+        $counter = DB::table('books')->where('id', $id)->first();
+        $counter = $counter->count;
+        $counter +=1;
+
         DB::table('books')
             ->where('id',$id)
             ->update([
-                'status'=>false,
+                'count'=>$counter,
                 'created_at'=>null,
                 'date_return'=>null
                 ]);

@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -58,6 +59,17 @@ class ImageController extends Controller
     }
 
     public function bookDescription($id){
+        $book_id_array=[];
+        $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
+        foreach ($get_reservation_id as $iddd){
+            $reservation_id[] = $iddd->id;
+        }
+        foreach ($reservation_id as $iddd){
+            $idd = DB::table('reservation_books')->where('reservation_id',$iddd)->first();
+            if($idd != null){
+                $book_id_array[] = $idd->book_id;
+            }
+        }
         $descriptionId = DB::table('books')
             ->where('id','=', $id)
             ->get();
@@ -72,6 +84,6 @@ class ImageController extends Controller
             ->where('id','=',$authorId)
             ->first();
 
-        return view('book_description',compact('descriptionId','authorName'));
+        return view('book_description',['descriptionId'=>$descriptionId,'authorName'=>$authorName, 'book_id_array'=>$book_id_array]);
     }
 }

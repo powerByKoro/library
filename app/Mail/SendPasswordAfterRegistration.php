@@ -18,10 +18,12 @@ class SendPasswordAfterRegistration extends Mailable
      * @return void
      */
     public $password ;
-    public function __construct($password)
+    public $bilet ;
+    public function __construct($password, $bilet)
 
     {
         $this->password = $password;
+        $this->bilet = $bilet;
     }
 
     /**

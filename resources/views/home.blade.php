@@ -33,12 +33,12 @@
         </li>
     </ul>
     <div class="row d-flex-nowrap">
-        <div class="col-2" >
+        <div class="col-1" >
             <div class="sticky-top">
                 @include('sidebar')
             </div>
         </div>
-        <div class="col-10 ">
+        <div class="col-11 ">
             <div class="row" style="margin-top: 30px">
                 <h1>Категории</h1>
                 @include('category')
