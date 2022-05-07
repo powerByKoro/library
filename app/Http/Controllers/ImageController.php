@@ -23,6 +23,17 @@ class ImageController extends Controller
     }
 
     public function authors($id){
+        $book_id_array=[];
+        $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
+        foreach ($get_reservation_id as $iddd){
+            $reservation_id[] = $iddd->id;
+        }
+        foreach ($reservation_id as $iddd){
+            $idd = DB::table('reservation_books')->where('reservation_id',$iddd)->first();
+            if($idd != null){
+                $book_id_array[] = $idd->book_id;
+            }
+        }
         $author_books = Author::query()
             ->where('id','=',$id)
             ->with('books')
@@ -31,7 +42,7 @@ class ImageController extends Controller
         $name = DB::table('authors')
             ->where('id','=',$id)
             ->first();
-        return view('author_books', compact('author_books','name'));
+        return view('author_books', compact('author_books','name','book_id_array'));
 
     }
     public function authors_page(){
@@ -45,6 +56,17 @@ class ImageController extends Controller
         return view('categories_page', compact('categories'));
     }
     public function categories($id){
+        $book_id_array=[];
+        $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
+        foreach ($get_reservation_id as $iddd){
+            $reservation_id[] = $iddd->id;
+        }
+        foreach ($reservation_id as $iddd){
+            $idd = DB::table('reservation_books')->where('reservation_id',$iddd)->first();
+            if($idd != null){
+                $book_id_array[] = $idd->book_id;
+            }
+        }
         $category_books = Category::query()
             ->where('id','=',$id)
             ->with('books')
@@ -54,7 +76,7 @@ class ImageController extends Controller
             ->where('id','=',$id)
             ->first();
 
-        return view('category_books',compact('category_books','name'));
+        return view('category_books',compact('category_books','name','book_id_array'));
 
     }
 
