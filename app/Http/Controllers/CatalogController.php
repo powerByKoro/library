@@ -16,14 +16,17 @@ class CatalogController extends Controller
     public function home_page(): View
     {
         $book_id_array=[];
-        $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
-        foreach ($get_reservation_id as $id){
-            $reservation_id[] = $id->id;
-        }
-        foreach ($reservation_id as $id){
-            $idd = DB::table('reservation_books')->where('reservation_id',$id)->first();
-            if($idd != null){
-                $book_id_array[] = $idd->book_id;
+
+        if(Auth::user()){
+            $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
+            foreach ($get_reservation_id as $id){
+                $reservation_id[] = $id->id;
+            }
+            foreach ($reservation_id as $id){
+                $idd = DB::table('reservation_books')->where('reservation_id',$id)->first();
+                if($idd != null){
+                    $book_id_array[] = $idd->book_id;
+                }
             }
         }
 

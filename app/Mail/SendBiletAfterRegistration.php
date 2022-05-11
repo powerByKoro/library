@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendPasswordAfterRegistration extends Mailable
+class SendBiletAfterRegistration extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,10 +19,9 @@ class SendPasswordAfterRegistration extends Mailable
      */
     public $password ;
     public $bilet ;
-    public function __construct($password)
-
+    public function __construct($bilet)
     {
-        $this->password = $password;
+        $this->bilet = $bilet;
     }
 
     /**

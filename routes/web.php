@@ -35,6 +35,7 @@ Route::post('/books/delete/{id}', [BookController::class, 'delete'])->name('acco
 
 
 Route::get('/account', [HomeController::class, 'index'])->name('account');
+Route::post('/get_bilet', [HomeController::class, 'get_bilet'])->name('bilet');
 Route::get('/author_books', function (){
     return view('author_books');
 })->name('author_books');

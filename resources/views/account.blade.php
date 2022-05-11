@@ -36,17 +36,37 @@
                         </div>
                     </div>
                 </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-3">
-                            Номер читательского билета
+                @if((Auth::user()->bilet)!=null)
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-3">
+                               Номер читательского билета
+                            </div>
+                            <div class="col-5 offset-1">
+                                MAI-2022-{{Auth::user()->bilet}}
+                            </div>
                         </div>
-                        <div class="col-5 offset-1">
-                            MAI-2022-{{Auth::user()->bilet}}
-                        </div>
-                    </div>
-                </li>
-
+                    </li>
+                @else
+                    <li class="list-group-item">
+                        <form action="/get_bilet" class="" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-3">
+                                    Получить читательский билет
+                                </div>
+                                <div class="col-5 offset-1">
+                                    <label for="pasport" class="form-label">Серия и номер паспорта</label>
+                                    <input type="text" id="pasport" class="form-control" name="pasport">
+                                    <div id="passwordHelpBlock" class="form-text">
+                                        Введите серию и номер паспорта без пробелов.
+                                    </div>
+                                    <button type="submit" class="">поехали</button>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

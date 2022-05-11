@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendPasswordAfterRegistration;
 use App\Models\Book;
 use App\Models\Reservation;
 use App\Models\ReservationBook;
@@ -11,8 +12,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\BookController;
+use App\Mail\SendBiletAfterRegistration;
 class HomeController extends Controller
 {
     public function __construct()
@@ -47,4 +50,14 @@ class HomeController extends Controller
         return view('account', compact('reservationBooks'));
     }
 
+    public function get_bilet(Request $req){
+        $bilet = $req->input('pasport');
+        Mail::to(Auth::user()->email)->send(new SendBiletAfterRegistration($bilet));
+
+        DB::table('users')
+            ->where('id',Auth::id())
+            ->update(['bilet'=>$bilet]);
+
+        return Redirect::back();
+    }
 }
