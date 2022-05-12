@@ -68,14 +68,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $password = $data['password'];
-        $bilet = preg_replace("/[^,.0-9]/", '', $password);
-        Mail::to($data['email'])->send(new SendPasswordAfterRegistration($password,$bilet));
+        Mail::to($data['email'])->send(new SendPasswordAfterRegistration($password));
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'bilet' => $bilet
         ]);
 
     }
