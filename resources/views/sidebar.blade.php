@@ -5,7 +5,7 @@
 
 
 
-    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" style="margin-top: 20px">
         <li class="nav-item">
             <a href="/" class="nav-link active py-3 border-bottom" aria-current="page" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
                 <img src="{{asset('storage/uploads/home.svg')}}" alt="" class="" style="height: 40px">
