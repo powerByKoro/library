@@ -43,6 +43,12 @@
                 <h1>Категории</h1>
                 @include('category')
              </div>
+            <div class="row offset-4" style="margin-top: 30px; border-radius: 10px">
+                @if($errors->any())
+                    <h3 class="text-danger" >{{$errors->first()}} </h3>
+                    <h6>- Получите читательский билет в личном кабинете.</h6>
+                @endif
+            </div>
             <div class="row" style="margin-top: 30px">
                 <h1>Книги</h1>
                 @php

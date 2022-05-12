@@ -61,7 +61,7 @@
                                     <div id="passwordHelpBlock" class="form-text">
                                         Введите серию и номер паспорта без пробелов.
                                     </div>
-                                    <button type="submit" class="">поехали</button>
+                                    <button type="submit" class="btn-md">Получить</button>
                                 </div>
                             </div>
                         </form>
