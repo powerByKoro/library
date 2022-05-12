@@ -28,7 +28,7 @@
                 @if(Auth::user())
                             {{asset('storage/'. Auth::user()->img)}}
                             @else
-                            {{asset('storage/uploads/default.svg')}}
+                            {{asset('images/маи.png')}}
                             @endif
                 " alt="mdo" width="70" height="60" class="rounded">
         </a>

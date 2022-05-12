@@ -18,7 +18,6 @@ class ImageController extends Controller
         DB::table('users')
             ->where('id','=',$id)
             ->update(['img' => $path]);
-
         return back();
     }
 
