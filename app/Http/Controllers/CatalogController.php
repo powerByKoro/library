@@ -19,6 +19,7 @@ class CatalogController extends Controller
 
         if(Auth::user()){
             $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
+            $reservation_id =[];
             foreach ($get_reservation_id as $id){
                 $reservation_id[] = $id->id;
             }
