@@ -2,7 +2,7 @@
 
 <div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
 
-        <img src="{{asset('storage/uploads/plane.svg')}}" alt="" class="" style="height: 40px; margin: 10px">
+
 
 
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
