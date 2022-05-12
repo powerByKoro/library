@@ -5,7 +5,7 @@
     <h2>Личный кабинет</h2>
     <div class="row">
         <div class="col-3">
-            <img src="{{asset('/storage/uploads'. Auth::user()->img)}}" alt="" class="img-fluid" style="height: 350px;width: 290px;border-radius: 15px">
+            <img src="{{asset('/storage/'. Auth::user()->img)}}" alt="" class="img-fluid" style="height: 350px;width: 290px;border-radius: 15px">
             <form action="/image/upload/{{Auth::user()->id}}"  method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-control" style="border: none">
