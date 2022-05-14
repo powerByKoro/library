@@ -54,15 +54,17 @@ class CatalogController extends Controller
     public function search(Request $request){
         $search = $request->search;
         $book_id_array=[];
-        $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
-        $reservation_id =[];
-        foreach ($get_reservation_id as $iddd){
-            $reservation_id[] = $iddd->id;
-        }
-        foreach ($reservation_id as $iddd){
-            $idd = DB::table('reservation_books')->where('reservation_id',$iddd)->first();
-            if($idd != null){
-                $book_id_array[] = $idd->book_id;
+        if(Auth::user()){
+            $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
+            $reservation_id =[];
+            foreach ($get_reservation_id as $iddd){
+                $reservation_id[] = $iddd->id;
+            }
+            foreach ($reservation_id as $iddd){
+                $idd = DB::table('reservation_books')->where('reservation_id',$iddd)->first();
+                if($idd != null){
+                    $book_id_array[] = $idd->book_id;
+                }
             }
         }
         $books = Book::query()
