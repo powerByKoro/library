@@ -23,14 +23,17 @@ class ImageController extends Controller
 
     public function authors($id){
         $book_id_array=[];
-        $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
-        foreach ($get_reservation_id as $iddd){
-            $reservation_id[] = $iddd->id;
-        }
-        foreach ($reservation_id as $iddd){
-            $idd = DB::table('reservation_books')->where('reservation_id',$iddd)->first();
-            if($idd != null){
-                $book_id_array[] = $idd->book_id;
+        if(Auth::user()){
+            $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
+            $reservation_id =[];
+            foreach ($get_reservation_id as $iddd){
+                $reservation_id[] = $iddd->id;
+            }
+            foreach ($reservation_id as $iddd){
+                $idd = DB::table('reservation_books')->where('reservation_id',$iddd)->first();
+                if($idd != null){
+                    $book_id_array[] = $idd->book_id;
+                }
             }
         }
         $author_books = Author::query()
@@ -56,14 +59,17 @@ class ImageController extends Controller
     }
     public function categories($id){
         $book_id_array=[];
-        $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
-        foreach ($get_reservation_id as $iddd){
-            $reservation_id[] = $iddd->id;
-        }
-        foreach ($reservation_id as $iddd){
-            $idd = DB::table('reservation_books')->where('reservation_id',$iddd)->first();
-            if($idd != null){
-                $book_id_array[] = $idd->book_id;
+        if(Auth::user()){
+            $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
+            $reservation_id =[];
+            foreach ($get_reservation_id as $iddd){
+                $reservation_id[] = $iddd->id;
+            }
+            foreach ($reservation_id as $iddd){
+                $idd = DB::table('reservation_books')->where('reservation_id',$iddd)->first();
+                if($idd != null){
+                    $book_id_array[] = $idd->book_id;
+                }
             }
         }
         $category_books = Category::query()
@@ -81,14 +87,17 @@ class ImageController extends Controller
 
     public function bookDescription($id){
         $book_id_array=[];
-        $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
-        foreach ($get_reservation_id as $iddd){
-            $reservation_id[] = $iddd->id;
-        }
-        foreach ($reservation_id as $iddd){
-            $idd = DB::table('reservation_books')->where('reservation_id',$iddd)->first();
-            if($idd != null){
-                $book_id_array[] = $idd->book_id;
+        if(Auth::user()){
+            $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
+            $reservation_id =[];
+            foreach ($get_reservation_id as $iddd){
+                $reservation_id[] = $iddd->id;
+            }
+            foreach ($reservation_id as $iddd){
+                $idd = DB::table('reservation_books')->where('reservation_id',$iddd)->first();
+                if($idd != null){
+                    $book_id_array[] = $idd->book_id;
+                }
             }
         }
         $descriptionId = DB::table('books')
