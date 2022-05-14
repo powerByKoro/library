@@ -55,6 +55,7 @@ class CatalogController extends Controller
         $search = $request->search;
         $book_id_array=[];
         $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
+        $reservation_id =[];
         foreach ($get_reservation_id as $iddd){
             $reservation_id[] = $iddd->id;
         }
