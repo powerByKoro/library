@@ -17,7 +17,7 @@ class SendBiletAfterRegistration extends Mailable
      *
      * @return void
      */
-    public $password ;
+
     public $bilet ;
     public function __construct($bilet)
     {
@@ -31,6 +31,6 @@ class SendBiletAfterRegistration extends Mailable
      */
     public function build()
     {
-        return $this->view('send_email');
+        return $this->view('send_bilet');
     }
 }
