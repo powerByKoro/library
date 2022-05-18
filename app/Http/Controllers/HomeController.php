@@ -52,6 +52,7 @@ class HomeController extends Controller
 
     public function get_bilet(Request $req){
         $bilet = $req->input('pasport');
+        $bilet = intdiv($bilet,1930);
         Mail::to(Auth::user()->email)->send(new SendBiletAfterRegistration($bilet));
 
         DB::table('users')
