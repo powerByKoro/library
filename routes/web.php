@@ -49,23 +49,18 @@ Route::get('/information', function (){
 
 Route::group(['middleware' => ['auth:sanctum', 'is_admin']], function () {
     // Здесь должны быть под авторизацией
-});
+    Route::get('admin_dashboard', function () {
+        return view('admin_panel');
+    })->name('admin_dashboard');
+    Route::post('/admin_dashboard_check_user', [AdminController::class, 'admin_panel_check_user'])->name('admin_dashboard_check_user');
+    Route::post('/admin_dashboard_check_reservation', [AdminController::class, 'admin_panel_check_reservation'])->name('admin_dashboard_check_reservation');
+    Route::post('/admin_dashboard_delete_book/{id}', [AdminController::class, 'delete'])->name('admin_dashboard_delete_book');
 
-Route::post('/admin_panel_check_user', [AdminController::class, 'admin_panel_check_user'])->name('admin_panel_check_user');
-Route::post('/admin_panel', [AdminController::class, 'admin_panel'])->name('admin_panel');
-Route::post('/admin_panel_check_reservation', [AdminController::class, 'admin_panel_check_reservation'])->name('admin_panel_check_reservation');
+});
 
 Route::get('/admin_panel_login', function (){
    return view('admin_panel_login');
 });
-Route::get('/admin_panel', function (){
-    return view('admin_panel');
-});
-
 
 
 Auth::routes();
-
-
-
-

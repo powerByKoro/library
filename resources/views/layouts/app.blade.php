@@ -45,6 +45,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <ul>
+                            <div class=""><a href="/admin_dashboard" class="nav-link">Панель администратора</a></div>
+                        </ul>
+                        <ul>
                             <div class=""><a href="/information" class="nav-link">Контактная информация</a></div>
                         </ul>
 

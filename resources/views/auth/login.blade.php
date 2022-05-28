@@ -57,9 +57,7 @@
                                     {{ __('Войти') }}
                                 </button>
                             </div>
-                            <div class="col-4">
-                                <a href="/admin_panel_login" class="">Вход для администратора</a>
-                            </div>
+
                         </div>
                     </form>
                 </div>

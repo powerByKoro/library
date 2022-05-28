@@ -14,7 +14,7 @@ class IsAdmin
         $user = $request->user();
 
         if (!$user->is_admin) {
-            throw abort(403);
+            return back();
         }
 
         return $next($request);
