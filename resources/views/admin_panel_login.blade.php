@@ -7,7 +7,7 @@
                 <h2 class="">
                     Вход для администратора
                 </h2>
-                <form method="POST" action="/admin_panel">
+                <form method="POST" action="/login">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">Логин</label>

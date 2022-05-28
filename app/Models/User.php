@@ -20,7 +20,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string $bilet
- * @property bool $is_manager
+ * @property bool $is_admin
  */
 class User extends Authenticatable
 {

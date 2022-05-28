@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\HomeController;
@@ -46,11 +47,13 @@ Route::get('/information', function (){
     return view('information');
 })->name('information');
 
+Route::group(['middleware' => ['auth:sanctum', 'is_admin']], function () {
+    // Здесь должны быть под авторизацией
+});
 
-
-Route::post('/admin_panel_check_user', [\App\Http\Controllers\AdminController::class, 'admin_panel_check_user'])->name('admin_panel_check_user');
-Route::post('/admin_panel', [\App\Http\Controllers\AdminController::class, 'admin_panel'])->name('admin_panel');
-Route::post('/admin_panel_check_reservation', [\App\Http\Controllers\AdminController::class, 'admin_panel_check_reservation'])->name('admin_panel_check_reservation');
+Route::post('/admin_panel_check_user', [AdminController::class, 'admin_panel_check_user'])->name('admin_panel_check_user');
+Route::post('/admin_panel', [AdminController::class, 'admin_panel'])->name('admin_panel');
+Route::post('/admin_panel_check_reservation', [AdminController::class, 'admin_panel_check_reservation'])->name('admin_panel_check_reservation');
 
 Route::get('/admin_panel_login', function (){
    return view('admin_panel_login');
