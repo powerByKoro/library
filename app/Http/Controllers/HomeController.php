@@ -61,4 +61,8 @@ class HomeController extends Controller
 
         return Redirect::back();
     }
+
+    public function admin_panel(){
+        return view('admin_panel');
+    }
 }

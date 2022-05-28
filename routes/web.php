@@ -46,6 +46,21 @@ Route::get('/information', function (){
     return view('information');
 })->name('information');
 
+
+
+Route::post('/admin_panel_check_user', [\App\Http\Controllers\AdminController::class, 'admin_panel_check_user'])->name('admin_panel_check_user');
+Route::post('/admin_panel', [\App\Http\Controllers\AdminController::class, 'admin_panel'])->name('admin_panel');
+Route::post('/admin_panel_check_reservation', [\App\Http\Controllers\AdminController::class, 'admin_panel_check_reservation'])->name('admin_panel_check_reservation');
+
+Route::get('/admin_panel_login', function (){
+   return view('admin_panel_login');
+});
+Route::get('/admin_panel', function (){
+    return view('admin_panel');
+});
+
+
+
 Auth::routes();
 
 
