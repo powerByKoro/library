@@ -2,7 +2,7 @@
 
 <div class="list-group">
     @foreach ($categories as $category)
-        <form action="/category/{{$author->id}}" method="post">
+        <form action="/category/{{$category->id}}" method="post">
             @csrf
             <button class="list-group-item list-group-item-action">
                 <h4 class="">УДК - {{$category->YDK}}</h4>
