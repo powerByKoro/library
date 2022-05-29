@@ -1,6 +1,6 @@
 
 
-<div class="container">
+<div class="container mt-3" style="border-top: 2px solid black">
 @foreach ($authors as $author)
     <div class="row">
         <div class="card">

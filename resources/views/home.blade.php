@@ -4,20 +4,12 @@
 
 <div class="container-fluid">
     <ul class="nav  justify-content-evenly" style="border-bottom: 3px solid black">
-        <li class="nav-item " style="">
-            <a class="nav-link  h1  "  aria-current="page" href="/authors_page">
-                Авторы
-            </a>
-            <figcaption class="blockquote-footer">
-                Поиск литературы по Авторам
-            </figcaption>
-        </li>
         <li class="nav-item ">
             <div class="row align-items-center">
                 <form method="GET" action="/search">
                     <div class="input-group">
                         <div class="form-outline" style="margin-top: 7px">
-                            <input type="text" id="search" class="form-control" style="height: 50px;width: 300px " name="search" placeholder="Поиск..."/>
+                            <input type="text" id="search" class="form-control" style="height: 50px;width: 350px " name="search" placeholder="Поиск по названию"/>
                         </div>
                         <button id="search-button" type="submit" class="btn btn-info  " style="color: white; margin-top: 7px; width: 60px"  >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -27,7 +19,7 @@
                     </div>
                 </form>
                 <figcaption class="blockquote-footer">
-                    Поиск литературы
+                    Поиск литературы по названию
                 </figcaption>
             </div>
         </li>
@@ -40,8 +32,24 @@
         </div>
         <div class="col-11 ">
             <div class="row" style="margin-top: 30px">
-                <h1>Категории</h1>
-                @include('category')
+                <div class="col-4 ">
+                    <h1>УДК</h1>
+                    @include('category')
+                </div>
+                <div class="col-5 offset-2">
+                    <div class="row">
+                        <div class="col-2">
+                            <h1>Авторы</h1>
+                        </div>
+                        <div class="col-7 offset-2">
+                            <a href="/authors_page" class="nav-link"><h3 class="">Перейти к каталогу авторов</h3></a>
+                        </div>
+                    </div>
+                    @php
+                        $authors_sidebar = $authors[0];
+                    @endphp
+                    @include('authors_sidebar')
+                </div>
              </div>
             <div class="row offset-4" style="margin-top: 30px; border-radius: 10px">
                 @if($errors->any())
@@ -51,25 +59,6 @@
             </div>
             <div class="row" style="margin-top: 30px">
                 <h1>Книги</h1>
-                @php
-                    $thirst_book = $books[0];
-                    $second_book = $books[1];
-                    $books = $thirst_book;
-                @endphp
-                @include('catalog_element')
-            </div>
-            <div class="row" style="margin-top: 30px">
-                <h1>Авторы</h1>
-                @php
-                    $authors = $authors[0];
-                @endphp
-                @include('authors')
-            </div>
-            <div class="row" style="margin-top: 30px">
-                <h1>Книги</h1>
-                @php
-                    $books = $second_book;
-                @endphp
                 @include('catalog_element')
             </div>
     </div>

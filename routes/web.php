@@ -31,6 +31,7 @@ Route::post('/book_description/{id}', [ImageController::class, 'bookDescription'
 
 Route::post('/image/upload/{id}', [ImageController::class, 'upload_img'])->name('upload_img');
 Route::get('/search', [CatalogController::class, 'search'])->name('search');
+Route::get('/search_authors', [CatalogController::class, 'search_authors'])->name('search_authors');
 Route::post('/books/add/{id}', [BookController::class, 'add'])->name('account.add');
 Route::post('/books/delete/{id}', [BookController::class, 'delete'])->name('account.delete');
 

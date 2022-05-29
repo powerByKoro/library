@@ -1,21 +1,7 @@
-<div class="card-group">
+
+
+<div class="list-group">
     @foreach ($categories as $category)
-        <div class="card text-center">
-            <div class="card-header">
-
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">{{$category->name}}</h4>
-                <p class="card-text">{{$category->content}}</p>
-                <form action="/category/{{$category->id}}" method="post" class="form-inline ">
-                    @csrf
-                    <button type="submit" class="btn btn-success">Просмотр категории</button>
-                </form>
-            </div>
-            <div class="card-footer text-muted">
-
-            </div>
-        </div>
+        <a href="#" class="list-group-item list-group-item-action"><h4 class="">{{$category->YDK}}    -     {{$category->name}}</h4> </a>
     @endforeach
 </div>
-

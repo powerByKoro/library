@@ -35,11 +35,11 @@ class CatalogController extends Controller
            ->where('status', '=' , false)
            ->get();
 
-        $books = $books->chunk(10);
+
 
         $author = Author::query()
             ->get();
-        $authors = $author->chunk(5);
+        $authors = $author->chunk(9);
 
         $categories = Category::query()
             ->get();
@@ -72,6 +72,29 @@ class CatalogController extends Controller
             ->where('status','=',false)
             ->get();
         return view('search_home',compact('books','book_id_array'));
+
+    }
+
+    public function search_authors(Request $request){
+        $search = $request->search;
+        $book_id_array=[];
+        if(Auth::user()){
+            $get_reservation_id = DB::table('reservations')->where('user_id',Auth::user()->id)->get();
+            $reservation_id =[];
+            foreach ($get_reservation_id as $iddd){
+                $reservation_id[] = $iddd->id;
+            }
+            foreach ($reservation_id as $iddd){
+                $idd = DB::table('reservation_books')->where('reservation_id',$iddd)->first();
+                if($idd != null){
+                    $book_id_array[] = $idd->book_id;
+                }
+            }
+        }
+        $authors = Author::query()
+            ->where('name', 'LIKE',"%$search%")
+            ->get();
+        return view('search_authors',compact('authors','book_id_array'));
 
     }
 
