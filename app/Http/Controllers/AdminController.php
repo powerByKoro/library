@@ -39,7 +39,7 @@ class AdminController extends Controller
                 ->join('books', 'books.id', '=', 'reservation_books.book_id')
                 ->where('reservations.user_id', $user->id)
                 ->get();
-            dd($reservationBooks);
+
             if($reservationBooks){
                 return view('reserved_books', compact('reservationBooks'));
             }else{
