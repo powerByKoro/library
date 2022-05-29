@@ -8,10 +8,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-4 offset-1">
+                            <div class="col-6 offset-1">
                                 <h2 class="">{{$author->name}}</h2>
                             </div>
-                            <div class="col-3 offset-2">
+                            <div class="col-3 offset-1">
                                 <form action="/author/{{$author->id}}" method="post">
                                     @csrf
                                     <button class="btn btn-dark btn-md ">
