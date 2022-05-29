@@ -40,7 +40,7 @@ class AdminController extends Controller
                 ->where('reservations.user_id', $user->id)
                 ->get();
 
-            if(!empty($reservationBooks)){
+            if($reservationBooks != null){
                 return view('reserved_books', compact('reservationBooks'));
             }else{
                 return back()->withErrors(['msg' => 'Резервов не найдено']);
