@@ -11,7 +11,7 @@
                         <h2>Дата брони: {{$book->created_at}}</h2>
                     </div>
                     <div class="col-3" >
-                        <h2>Дата возврата: {{$book->date_return}}</h2>
+                        <h2>Дата отмены брони: {{$book->date_return}}</h2>
                     </div>
                     <div class="col-3">
                         <form method="POST" action="/admin_dashboard_delete_book/{{$book->id}}" class="">
